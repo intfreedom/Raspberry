@@ -1,0 +1,135 @@
+/*
+* 这几天就是全力学习，学一个东西累了，就是学其他的，然后，
+* 1.看看硬件原理图
+* 2.计算机基础知识；
+* ROM与RAM的区别；这与哈弗结构，Instruction Memory与Data Memory;
+* 明天看看Linux驱动开发，bootloader,内核裁剪等；
+*/
+
+/*
+* 简历上提到，IO点灯，灯的闪烁不同；IO programming;IO output;
+* IO端口的灌电流能力高于拉电流能力(低电平点亮LED);
+* IO output;;;
+* CPU执行运算能力强，时钟，配置引脚；复位时选择时钟输入源；
+* 总线接口访问存储器/外设；Digital I/O programming;IO output; Noisy signals Bouncing; Button pressed Button refeased;
+* sampling;Digital I/O pins: sampling; Switching;
+*/
+
+/*
+* 初始化，将微控制器内部电路；
+* 上电复位，电源丢失复位，外部产生的；时钟的驱动，有序的进行；
+* 时钟频率高，意味着CPU执行运算的能力强；
+* 看门狗，定时器，异步通信等都依赖稳定的时钟；
+* 时钟通常由外部晶体或振荡器提供，使用外部的配置引脚在复位时选择时钟输入源；
+* 片内，片外，内部总线接口，CPU通过内部总线接口访问存储器/外设；
+* CPU，总线设备(存储器/外设)必须具有一个确定的地址范围；
+* 数据总线；
+* 外设是为特定的控制应用而设计的；
+* 输入输出：DIO，ECT， PWM；模拟量处理：AD，DA；
+* 通信处理：SCI,SPI,I2C,HDLC,
+* FLASH/ROM Nonvolatile, data retained after power down,
+* code, constant data, lookup table, string, vector table
+* Need special devices or process to modify;
+* RAM Volatile, data lost after power down Variables, data;
+* Read/write/
+* 单片机编程的精髓在于存储器的使用；
+* peripheral is a map of memory;the variable is located in memory
+* the code is stored in memory;
+* processor core; volatile memory(SRAM) Non-volatile memory(EEPROM)Flash, Counter Timer, Clock, watchdog;
+Digital I/O parallel, serial interface interrupt controller A/D
+Peripheral, Stack Pointer, interface interrupt controller A/D;
+Digital I/O parallel, serial interface interrupt controller A/D
+Peripheral, Stack Pointer, interface interrupt controller A/D;
+微控制器，内部，微控制器的启动过程，上电复位后->堆栈初值->Figure；
+KL25-; Digital I/O pins;pin;data out output enable module enable data out; Module;Digital I/O pins; IO是微控制器和外部接口
+* 最基本的手段；通常在微控制器中，将8/16/32个IO口合成一组；
+* IO current limit, Voltage and current operating ratings;
+* Symbol, Description Digital aupply voltage; Digital 
+* 每一个模块都必须在GPIO control registers;
+* GPIO模块也需要时钟；switch;按键，脉冲，提供多组触点；
+* 各种形状，各种尺寸；
+* Step 1: SIM enable correspond GPIO port clock;
+* Step 2: Detail in Page 771 of KL25P80；
+* Step 3: Port Data Output;
+* GPIO memory map;Register name, Width(in bits);
+* RW; Port Data Output Register;GPIOx_PDDR;
+* GPIOx_PDDR field descriptions; Description; Port Dain Direction;
+* KL25 GPIO PDIR;
+* descriptions; Description Port Data input; Unimpiemented for a
+* Port/PTD7/PTD6/PTD5/PTD4/PTD3/PTD3/PTD2/PTD1;
+* GPIOD_PDDR=0x000000FF;
+* GPIOD_PDOR=0x00;
+* for(;;){
+	delayms(1000);
+	GPIOD_PDOR = ~GPIOD_PDOR;
+	SIM enable correspond GPIO SIM memory map;
+Absolute addrss(hex); System Clock Gating Control Register Clock;
+* Clock SIM_SCGC5 = SIM_SCGC5 | (1<<12);
+* GPIO PDDR set Cortex M, file registers Program status;
+32bit MCU Register file(ARM Cortex M);
+Program status registers;
+Pin Control Register;
+PORTx_Control Pin Disabled(Analog). Alternative 2(chip specific).
+Drive Strength Enable Passive Filter Enable Default, ALT0；
+PTD0， PTD1；PORTD_PCR0 = 0x0100;
+
+}
+*/
+
+
+/*
+* 32bit MCU Register file(ARM Cortex M)
+* xPSR Program status registers
+* 1.1APSR访问的是高四位；1.2IPSR访问的底四位；
+*/
+
+/*
+* ARMv1-ARMv8等是结构体系版本(Architecture);向下兼容；
+* ARM6，ARM8，Cortex-A是具体的产品型号；从ARMv7开始，型号称为Cortex-A,Cortex-R,Cortex-M;
+* ARM MCU/MPU from Freescale;
+* 堆，栈空间和变量空间是使用同一端存储器空间；
+*/
+
+/*
+* 程序状态寄存器，Program Status Register;
+* 条件状态寄存器，CCR(Condition Code Register);
+* 操作数；
+* 堆栈顶端位置通过CPU内的堆栈指针寄存器确定；SP；
+* LR，指令都是偶数(两位，或四位)，最低位，1是告诉thumb指令集，0是ARM指令集；
+* 使用的时候最低位不用，直接取高位部分，最后一位置0；
+* 
+*/
+
+/*
+* 集成开发环境，ISIS；
+*/
+
+/*
+* 一个端口;
+* LPC2000系列ARM硬件结构；
+* 功能选择寄存器，PINSEL0对应GPIO，PINSEL1对应TXDO，PINSEL2对应PWM1输出；
+* PINSEL寄存器中，有两个位控制，(00->0, 01->1, 10->2);
+* 功能选择为IO，PINSEL0[1..0] = 00表示GPIO
+* 引脚作为输出，GPIO,TXDO,PWM1输出；
+* 引脚P0.0/TXD0/MAT3.1......P0.31;ARM是32位的，对应一个P0端口；
+* IO0DIR对应P0;IO0DIR[0]对应P0.0；IO0DIR[0]=1控制引脚高低电平；
+* 引脚状态寄存器(IOxPIN)，IOxPIN[0]对应Px.0;
+* 对比之下，51单片机从P0.0-P0.7；
+*/
+
+/*
+* 微控制器(MCU)与嵌入式系统(Eembedded System)
+*/
+
+/*
+* WiKipedia;
+*/
+
+/*
+* I2C的接口，读I方C;
+* 推荐一本书，the art of electronics(3th)，2015年；
+* analog circuits world class designs；模拟电路设计；
+* 没有最好，只有最合适；
+* 阅读官方文档；
+* ARM Cortex-M0权威指南；
+*/
