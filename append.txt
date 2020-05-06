@@ -27,55 +27,30 @@
 * 外设是为特定的控制应用而设计的；
 * 输入输出：DIO，ECT， PWM；模拟量处理：AD，DA；
 * 通信处理：SCI,SPI,I2C,HDLC,
-* FLASH/ROM Nonvolatile, data retained after power down,
-* code, constant data, lookup table, string, vector table
-* Need special devices or process to modify;
-* RAM Volatile, data lost after power down Variables, data;
-* Read/write/
 * 单片机编程的精髓在于存储器的使用；
-* peripheral is a map of memory;the variable is located in memory
-* the code is stored in memory;
-* processor core; volatile memory(SRAM) Non-volatile memory(EEPROM)Flash, Counter Timer, Clock, watchdog;
-Digital I/O parallel, serial interface interrupt controller A/D
-Peripheral, Stack Pointer, interface interrupt controller A/D;
-Digital I/O parallel, serial interface interrupt controller A/D
-Peripheral, Stack Pointer, interface interrupt controller A/D;
-微控制器，内部，微控制器的启动过程，上电复位后->堆栈初值->Figure；
-KL25-; Digital I/O pins;pin;data out output enable module enable data out; Module;Digital I/O pins; IO是微控制器和外部接口
 * 最基本的手段；通常在微控制器中，将8/16/32个IO口合成一组；
 * IO current limit, Voltage and current operating ratings;
 * Symbol, Description Digital aupply voltage; Digital 
 * 每一个模块都必须在GPIO control registers;
 * GPIO模块也需要时钟；switch;按键，脉冲，提供多组触点；
 * 各种形状，各种尺寸；
-* Step 1: SIM enable correspond GPIO port clock;
-* Step 2: Detail in Page 771 of KL25P80；
-* Step 3: Port Data Output;
-* GPIO memory map;Register name, Width(in bits);
-* RW; Port Data Output Register;GPIOx_PDDR;
-* GPIOx_PDDR field descriptions; Description; Port Dain Direction;
-* KL25 GPIO PDIR;
-* descriptions; Description Port Data input; Unimpiemented for a
-* Port/PTD7/PTD6/PTD5/PTD4/PTD3/PTD3/PTD2/PTD1;
-* GPIOD_PDDR=0x000000FF;
-* GPIOD_PDOR=0x00;
-* for(;;){
-	delayms(1000);
-	GPIOD_PDOR = ~GPIOD_PDOR;
-	SIM enable correspond GPIO SIM memory map;
-Absolute addrss(hex); System Clock Gating Control Register Clock;
-* Clock SIM_SCGC5 = SIM_SCGC5 | (1<<12);
-* GPIO PDDR set Cortex M, file registers Program status;
-32bit MCU Register file(ARM Cortex M);
-Program status registers;
-Pin Control Register;
-PORTx_Control Pin Disabled(Analog). Alternative 2(chip specific).
-Drive Strength Enable Passive Filter Enable Default, ALT0；
-PTD0， PTD1；PORTD_PCR0 = 0x0100;
-
-}
+* Cortex-M的在线调试，OpenSDA；
+* 编程，烧写器，
+* 异步通讯；
+* 同步通讯；
+* 通讯设备，UART-Universal Async. Receiver Transmitter;
+* 通用异步接收/发送装置(总称)；SCI-Serial Communication Interface;
+* 编码：NRZ(not return zero)Encoding;
+* 避免了异步时钟误差的积累；想一想？收发双方允许的波特率误差是多少？
+* NRZ(not return zero)Ecoding;
+* 奇偶校验，使得总的1的个数是偶数；使得总的1的个数是奇数；
+* 微嵌入式系统，ARM，UART寄存器；异步串行通讯UART；
 */
 
+/*
+* C is much more flexible and free-wheeling than other high-level
+* programming languages: C is a structured language
+*/
 
 /*
 * 32bit MCU Register file(ARM Cortex M)
@@ -87,7 +62,7 @@ PTD0， PTD1；PORTD_PCR0 = 0x0100;
 * ARMv1-ARMv8等是结构体系版本(Architecture);向下兼容；
 * ARM6，ARM8，Cortex-A是具体的产品型号；从ARMv7开始，型号称为Cortex-A,Cortex-R,Cortex-M;
 * ARM MCU/MPU from Freescale;
-* 堆，栈空间和变量空间是使用同一端存储器空间；
+* 堆，栈空间和变量空间是使用同一端存储器空间；RS-200M-Cortex-R;arm;MCU;
 */
 
 /*
@@ -126,10 +101,33 @@ PTD0， PTD1；PORTD_PCR0 = 0x0100;
 */
 
 /*
+* 共阴极，高电平点亮，共阳极，低电平点亮；
+* CPU管脚复用，点LED等是使用GPIO中的输入输出功能；
+* 例如STM32参考手册；
+* STM32_GPIO寄存器:两个32位的配置寄存器GPIOx->CRL,GPIOx->CRH;
+* 编程目的操作硬件，硬件分布在地址上，硬件把地址-寄存器；
+* 某个寄存器管理PA0-PA4(PortA)；GPIOA_CRL([4:19])对应PA1-PA4;
+* 一个寄存器的4位对应一个PA端口的一个引脚，32位的GPIOA_CRL对应PA0-PA7；
+* GPIOA_CRL是端口配置低寄存器：在通用推挽输出；[4:19]=0011 0011 0011 0011；//配置PA1-PA4为通用推挽输出；
+* 让外设工作的是电流，电压让电流产生；
+*/
+
+/*
 * I2C的接口，读I方C;
 * 推荐一本书，the art of electronics(3th)，2015年；
 * analog circuits world class designs；模拟电路设计；
 * 没有最好，只有最合适；
 * 阅读官方文档；
 * ARM Cortex-M0权威指南；
+* 推荐，<<C语言深度解剖，解开程序员面试笔试的秘密>>
+* arm keil可以编辑C，烧录到STM32的板子上；
+* secureCRT烧写系统；
+* sourceInsight对比vscode;
+* 韦东山，Linux开发完全手册；
+* make gconfig配置内核，N不编译进内核，M以模块形式；
+*/
+
+/*
+* 用ARM开发板和步进电机开发；https://wenku.baidu.com/view/9baf1f35168884868662d606.html
+就那个注射器的实验。
 */
