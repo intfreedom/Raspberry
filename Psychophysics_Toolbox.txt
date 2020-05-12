@@ -1,0 +1,10 @@
+﻿/*
+* It would be great if you could try to get octave and PTB working on it. 
+* I will send you a link but the new Linux kernel has added support for the GPU so should work much better
+* Here is some info on 4B: https://psychtoolbox.discourse.group/t/rpi4b-bcm2711-what-is-page-flipping/3171
+* PTB: psych(/saik/)，心理，精神病学的；Psychtoolbox；
+* Psychophysics,英 /saɪkə(ʊ)'fɪzɪks/;
+* Psychophysics Toolbox (vision reserach software);中文全称 : 心理物理工具箱(视觉研究的软件)
+* 1.解决办法，可以在树莓派上安装Ubuntu，首先确保Ubuntu安装Psychophysics Toolbox可以起作用；
+* 2.
+*/

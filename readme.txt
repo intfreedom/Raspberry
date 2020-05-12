@@ -1,7 +1,3 @@
 ﻿/*
-* It would be great if you could try to get octave and PTB working on it. 
-* I will send you a link but the new Linux kernel has added support for the GPU so should work much better
-* Here is some info on 4B: https://psychtoolbox.discourse.group/t/rpi4b-bcm2711-what-is-page-flipping/3171
-* PTB: psych(/saik/)，心理，精神病学的；Psychtoolbox；
-* 
+* 基于Raspberry Pi 4B开发一些应用； 
 */
