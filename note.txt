@@ -134,6 +134,9 @@
 
 1.自动注射的项目；
 https://github.com/pachterlab/poseidon
+1.1步进电机：https://www.pololu.com/product/2133
+DRV8825 Stepper Motor Driver Carrier，DRV8825步进电机驱动载体；
+
 2.1一个易于使用，高度可定制的开源注射器泵和显微镜系统。
 2.1.1该软件配置为以1/32微步进的速度每转200步运行步进电机，即每转6400步。microstepping微步；
 要进行配置，必须在Arduino CNC防护板的M0，M1和M2引脚之间添加3个跳线。
