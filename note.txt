@@ -139,7 +139,9 @@ DRV8825 Stepper Motor Driver Carrier，DRV8825步进电机驱动载体；
 
 2.1一个易于使用，高度可定制的开源注射器泵和显微镜系统。
 2.1.1该软件配置为以1/32微步进的速度每转200步运行步进电机，即每转6400步。microstepping微步；
-要进行配置，必须在Arduino CNC防护板的M0，M1和M2引脚之间添加3个跳线。
+要进行配置，必须在Arduino CNC shield的M0，M1和M2引脚之间添加3个跳线。
 有关微步进的更多信息，请参见CNC屏蔽使用的DRV8825步进电机驱动器的产品页面。
-2.1.2
-2.1.3
+2.1.2步进电机是一种将电脉冲信号转换成相应角位移或线位移的电动机，又称脉冲电动机；
+2.1.3arduino AccelStepper库 控制步进电机，控制最大速度，最大加速度；
+https://blog.csdn.net/qq_33583069/article/details/88555866
+2.1.4. Arduino CNC Shield;
